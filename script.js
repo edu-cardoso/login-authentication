@@ -7,19 +7,25 @@ const registerBtn = document.querySelector('#register-btn')
 
 let users = JSON.parse(localStorage.getItem('users')) || []
 
-function setUsers() {
+function setUsersOnDB() {
+  users.push({
+    name: username.value,
+    email: email.value,
+    password: password.value,
+  })
+  localStorage.setItem('users', JSON.stringify(users))
+  clearForm()
+}
+
+function validatePassword() {
   registerBtn.addEventListener('click', () => {
     if (password.value.length >= 6 && password.value === passwordVerify.value) {
-      users.push({
-        name: username.value,
-        email: email.value,
-        password: password.value,
-      })
-      localStorage.setItem('users', JSON.stringify(users))
-      clearForm()
+      setUsersOnDB()
     }
   })
 }
+
+validatePassword()
 
 function clearForm() {
   username.value = ''
