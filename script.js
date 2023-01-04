@@ -4,7 +4,8 @@ const password = document.querySelector('#input-password')
 const passwordVerify = document.querySelector('#input-password-verify')
 const registerBtn = document.querySelector('#register-btn')
 
-let users = []
+
+let users = JSON.parse(localStorage.getItem('users')) || []
 
 function setUsers() {
   registerBtn.addEventListener('click', () => {
@@ -13,13 +14,22 @@ function setUsers() {
         name: username.value,
         email: email.value,
         password: password.value,
-        passwordVerify: passwordVerify.value
       })
-      console.log(users);
+      localStorage.setItem('users', JSON.stringify(users))
+      clearForm()
     }
   })
 }
 
-setUsers()
+function clearForm() {
+  username.value = ''
+  email.value = ''
+  password.value = ''
+  passwordVerify.value = ''
+}
+
+
+
+
 
 
