@@ -18,14 +18,21 @@ function setUsersOnDB() {
 }
 
 function validatePassword() {
-  registerBtn.addEventListener('click', () => {
-    if (password.value.length >= 6 && password.value === passwordVerify.value) {
-      setUsersOnDB()
-    }
-  })
+  if (password.value.length >= 6 && password.value === passwordVerify.value) {
+    return true
+  }
 }
 
-validatePassword()
+function validateEmail(email) {
+  const regex = /\S+@\S+\.\S+/;
+  return regex.test(email);
+}
+
+registerBtn.addEventListener('click', () => {
+  if(username.value !== '' && validatePassword() && validateEmail(email.value)) {
+    setUsersOnDB()
+  }
+})
 
 function clearForm() {
   username.value = ''
