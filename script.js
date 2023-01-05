@@ -1,71 +1,15 @@
-const username = document.querySelector('#input-name')
-const email = document.querySelector('#input-email')
-const password = document.querySelector('#input-password')
-const passwordVerify = document.querySelector('#input-password-verify')
-const registerBtn = document.querySelector('#register-btn')
+const emailLogin = document.querySelector('#input-email-login')
+const passwordLogin = document.querySelector('#input-password-login')
+const loginBtn = document.querySelector('#login-btn')
 
+let registeredUsers = JSON.parse(localStorage.getItem('users'))
 
-let users = JSON.parse(localStorage.getItem('users')) || []
-
-function setUsersOnDB() {
-  users.push({
-    name: username.value,
-    email: email.value,
-    password: password.value,
-  })
-  localStorage.setItem('users', JSON.stringify(users))
-  clearForm()
-}
-
-function validatePassword() {
-  if (password.value.length >= 6 && password.value === passwordVerify.value) {
-    return true
-  }
-}
-
-function validateEmail(email) {
-  const regex = /\S+@\S+\.\S+/;
-  return regex.test(email);
-}
-
-registerBtn.addEventListener('click', () => {
-  if (username.value !== '' && validatePassword() && validateEmail(email.value) && userExists()) {
-    setUsersOnDB()
-  }
-})
-
-function clearForm() {
-  username.value = ''
-  email.value = ''
-  password.value = ''
-  passwordVerify.value = ''
-}
-
-function userExists() {
-  let emails = users.map(user => {
-    return user.email
+loginBtn.addEventListener('click', () => {
+  registeredUsers.forEach(user => {
+    if(emailLogin.value === user.email && passwordLogin.value === user.password) {
+      console.log('ok');
+      emailLogin.value = ''
+      passwordLogin.value = ''
+    }
   });
-  if (emails.includes(email.value)) {
-    alert('Email já cadastrado')
-    clearForm()
-    return false
-  }
-  return true
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+})
