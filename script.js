@@ -29,7 +29,7 @@ function validateEmail(email) {
 }
 
 registerBtn.addEventListener('click', () => {
-  if(username.value !== '' && validatePassword() && validateEmail(email.value)) {
+  if (username.value !== '' && validatePassword() && validateEmail(email.value) && userExists()) {
     setUsersOnDB()
   }
 })
@@ -40,6 +40,29 @@ function clearForm() {
   password.value = ''
   passwordVerify.value = ''
 }
+
+function userExists() {
+  let emails = users.map(user => {
+    return user.email
+  });
+  if (emails.includes(email.value)) {
+    alert('Email já cadastrado')
+    clearForm()
+    return false
+  }
+  return true
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
