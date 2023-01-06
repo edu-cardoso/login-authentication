@@ -4,12 +4,26 @@ const loginBtn = document.querySelector('#login-btn')
 
 let registeredUsers = JSON.parse(localStorage.getItem('users'))
 
-loginBtn.addEventListener('click', () => {
-  registeredUsers.forEach(user => {
-    if(emailLogin.value === user.email && passwordLogin.value === user.password) {
-      console.log('ok');
-      emailLogin.value = ''
-      passwordLogin.value = ''
-    }
-  });
-})
+function userLogin() {
+  loginBtn.addEventListener('click', () => {
+    getUserLoggedData()
+    registeredUsers.forEach(user => {
+      if (emailLogin.value === user.email && passwordLogin.value === user.password) {
+        alert('Usuário logado')
+        emailLogin.value = ''
+        passwordLogin.value = ''
+      }
+    })
+  })
+}
+
+userLogin()
+
+function getUserLoggedData() {
+  let userData = registeredUsers.filter(user => user.email === emailLogin.value)
+  localStorage.setItem('userLogged', JSON.stringify(userData))
+}
+
+
+
+
