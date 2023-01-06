@@ -6,12 +6,12 @@ let registeredUsers = JSON.parse(localStorage.getItem('users'))
 
 function userLogin() {
   loginBtn.addEventListener('click', () => {
-    getUserLoggedData()
+    setUserLoggedData()
     registeredUsers.forEach(user => {
       if (emailLogin.value === user.email && passwordLogin.value === user.password) {
-        alert('Usuário logado')
         emailLogin.value = ''
         passwordLogin.value = ''
+        window.location.replace ("http://127.0.0.1:5500/profile.html")
       }
     })
   })
@@ -19,10 +19,14 @@ function userLogin() {
 
 userLogin()
 
-function getUserLoggedData() {
+function setUserLoggedData() {
   let userData = registeredUsers.filter(user => user.email === emailLogin.value)
   localStorage.setItem('userLogged', JSON.stringify(userData))
 }
+
+
+
+
 
 
 
