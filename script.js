@@ -11,7 +11,7 @@ function userLogin() {
       if (emailLogin.value === user.email && passwordLogin.value === user.password) {
         emailLogin.value = ''
         passwordLogin.value = ''
-        window.location.replace ("http://127.0.0.1:5500/profile.html")
+        window.location.replace("profile.html")
       } 
     })
   })
