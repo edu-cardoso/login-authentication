@@ -75,3 +75,21 @@ form p {
   font-size: 20px;
 }
 
+@media(max-width: 576px) {
+  #form-container {
+    margin-top:0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  #form-content {
+    padding: 30px;
+    height: 100vh;
+  }
+  
+  h1 {
+    margin-bottom: 80px;
+  }
+
+}
+
