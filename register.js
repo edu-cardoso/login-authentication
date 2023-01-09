@@ -1,8 +1,22 @@
 const username = document.querySelector('#input-name')
 const email = document.querySelector('#input-email')
 const password = document.querySelector('#input-password')
+const passwordLength = document.querySelector('#passwordLength')
 const passwordVerify = document.querySelector('#input-password-verify')
 const registerBtn = document.querySelector('#register-btn')
+
+function checkPasswordLength() {
+  password.addEventListener('keyup', () => {
+    if(password.value.length < 6 && password.value.length !== 0) {
+      passwordLength.innerHTML = 'A senha deve conter 6 ou mais caracteres'
+      passwordLength.style.color = 'red'
+    } else {
+      passwordLength.innerHTML = ''
+    }
+  })
+}
+
+checkPasswordLength()
 
 let users = JSON.parse(localStorage.getItem('users')) || []
 
@@ -55,6 +69,8 @@ function userExists() {
   }
   return true
 }
+
+
 
 
 

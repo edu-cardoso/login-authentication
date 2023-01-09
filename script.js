@@ -12,7 +12,7 @@ function userLogin() {
         emailLogin.value = ''
         passwordLogin.value = ''
         window.location.replace ("http://127.0.0.1:5500/profile.html")
-      }
+      } 
     })
   })
 }
@@ -23,6 +23,9 @@ function setUserLoggedData() {
   let userData = registeredUsers.filter(user => user.email === emailLogin.value)
   localStorage.setItem('userLogged', JSON.stringify(userData))
 }
+
+
+
 
 
 
