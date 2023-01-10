@@ -80,6 +80,7 @@ form p {
     margin-top:0;
     width: 100vw;
     height: 100vh;
+    border-radius: 0;
   }
 
   #form-content {
